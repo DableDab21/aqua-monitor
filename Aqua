@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+from pathlib import Path
+
+def simulate_wells(days: int = 180, seed: int = 42) -> pd.DataFrame:
+    np.random.seed(seed)
+    start_date = datetime.today() - timedelta(days=days)
+    dates = [start_date + timedelta(days=i) for i in range(days)]
+
+    wells = [
+        {"well_id": "W001", "region": "North", "lat": 42.1, "lon": 74.7},
+        {"well_id": "W002", "region": "North", "lat": 42.2, "lon": 74.6},
+        {"well_id": "W003", "region": "South", "lat": 41.2, "lon": 74.9},
+        {"well_id": "W004", "region": "South", "lat": 41.4, "lon": 75.1},
+        {"well_id": "W005", "region": "South", "lat": 41.3, "lon": 75.0},
+    ]
+
+    rows = []
+    for w in wells:
+        base_level = np.random.uniform(7.5, 12.0)
+        trend = np.linspace(0, np.random.uniform(-1.0, 1.0), days)
+        season = 0.8 * np.sin(np.linspace(0, 3*np.pi, days))
+        noise = np.random.normal(0, 0.25, days)
+        rainfall = np.clip(np.random.gamma(shape=1.2, scale=3.0, size=days) - 2.0, 0, None)
+        temperature = np.clip(25 + 10*np.sin(np.linspace(0, 2*np.pi, days)) + np.random.normal(0, 1.5, days), -10, 50)
+        water = base_level + trend + season - 0.03 * (temperature - 25) + 0.02 * rainfall + noise
+        for d, wl, t, r in zip(dates, water, temperature, rainfall):
+            rows.append({
+                "date": d.date().isoformat(),
+                "well_id": w["well_id"],
+                "region": w["region"],
+                "lat": w["lat"], "lon": w["lon"],
+                "water_level_m": round(max(wl, 0.1), 2),
+                "temperature_C": round(float(t), 2),
+                "rainfall_mm": round(float(r), 2),
+            })
+
+    return pd.DataFrame(rows)
+
+if __name__ == "__main__":
+    df = simulate_wells(180)
+    output_path = Path(__file__).resolve().parents[1] / "data" / "wells_sample.csv"
+    df.to_csv(output_path, index=False)
+    print(f"✅ Data saved to {output_path}")
