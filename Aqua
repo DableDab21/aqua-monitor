@@ -37,9 +37,3 @@ def simulate_wells(days: int = 180, seed: int = 42) -> pd.DataFrame:
             })
 
     return pd.DataFrame(rows)
-
-if __name__ == "__main__":
-    df = simulate_wells(180)
-    output_path = Path(__file__).resolve().parents[1] / "data" / "wells_sample.csv"
-    df.to_csv(output_path, index=False)
-    print(f"✅ Data saved to {output_path}")
