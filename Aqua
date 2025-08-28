@@ -8,13 +8,6 @@ def simulate_wells(days: int = 180, seed: int = 42) -> pd.DataFrame:
     start_date = datetime.today() - timedelta(days=days)
     dates = [start_date + timedelta(days=i) for i in range(days)]
 
-    wells = [
-        {"well_id": "W001", "region": "North", "lat": 42.1, "lon": 74.7},
-        {"well_id": "W002", "region": "North", "lat": 42.2, "lon": 74.6},
-        {"well_id": "W003", "region": "South", "lat": 41.2, "lon": 74.9},
-        {"well_id": "W004", "region": "South", "lat": 41.4, "lon": 75.1},
-        {"well_id": "W005", "region": "South", "lat": 41.3, "lon": 75.0},
-    ]
 
     rows = []
     for w in wells:
