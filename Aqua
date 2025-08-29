@@ -19,14 +19,5 @@ def simulate_wells(days: int = 180, seed: int = 42) -> pd.DataFrame:
         temperature = np.clip(25 + 10*np.sin(np.linspace(0, 2*np.pi, days)) + np.random.normal(0, 1.5, days), -10, 50)
         water = base_level + trend + season - 0.03 * (temperature - 25) + 0.02 * rainfall + noise
         for d, wl, t, r in zip(dates, water, temperature, rainfall):
-            rows.append({
-                "date": d.date().isoformat(),
-                "well_id": w["well_id"],
-                "region": w["region"],
-                "lat": w["lat"], "lon": w["lon"],
-                "water_level_m": round(max(wl, 0.1), 2),
-                "temperature_C": round(float(t), 2),
-                "rainfall_mm": round(float(r), 2),
-            })
 
     return pd.DataFrame(rows)
