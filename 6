@@ -1,0 +1,4 @@
+SELECT DISTINCT Company.name
+FROM Trip
+JOIN Company ON Trip.company = Company.id
+WHERE plane = 'Boeing'
