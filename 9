@@ -1,0 +1,4 @@
+SELECT DISTINCT company.name
+FROM trip
+	JOIN company ON trip.company = company.id
+WHERE trip.town_from = 'Vladivostok';
