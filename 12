@@ -1,0 +1,6 @@
+SELECT trip.id AS id,
+       COUNT(pass_in_trip.passenger) AS count
+FROM Trip
+LEFT JOIN pass_in_trip 
+       ON trip.id = pass_in_trip.trip
+GROUP BY trip.id;
