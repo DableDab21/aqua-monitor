@@ -1,0 +1,4 @@
+SELECT DISTINCT p1.name
+FROM passenger p1
+	JOIN passenger p2 ON p1.name = p2.name
+	AND p1.id != p2.id;
