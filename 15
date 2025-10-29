@@ -1,0 +1,6 @@
+SELECT trip.time_in
+FROM trip
+	JOIN pass_in_trip ON trip.id = pass_in_trip.trip
+	JOIN passenger ON pass_in_trip.passenger = passenger.id
+WHERE passenger.name = 'Steve Martin'
+	AND trip.town_to = 'London';
