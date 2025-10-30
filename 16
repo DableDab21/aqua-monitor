@@ -1,0 +1,8 @@
+SELECT passenger.name,
+	COUNT(pass_in_trip.trip) AS count
+FROM passenger
+	JOIN pass_in_trip ON passenger.id = pass_in_trip.passenger
+GROUP BY passenger.name
+HAVING COUNT(pass_in_trip.trip) > 0
+ORDER BY count DESC,
+	passenger.name ASC;
