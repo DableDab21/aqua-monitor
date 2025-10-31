@@ -1,0 +1,5 @@
+SELECT g.good_name
+FROM Payments p
+	JOIN Goods g ON p.good = g.good_id
+GROUP BY g.good_name
+HAVING COUNT(*) > 1;
