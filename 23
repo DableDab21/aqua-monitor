@@ -1,0 +1,9 @@
+SELECT g.good_name,
+	MAX(p.unit_price) AS unit_price
+FROM Payments p
+	JOIN Goods g ON p.good = g.good_id
+	JOIN GoodTypes gt ON g.type = gt.good_type_id
+WHERE gt.good_type_name = 'delicacies'
+GROUP BY g.good_name
+ORDER BY unit_price DESC
+LIMIT 1;
