@@ -1,0 +1,5 @@
+SELECT g.good_name
+FROM Goods g
+	LEFT JOIN Payments p ON g.good_id = p.good
+	AND YEAR(p.date) = 2005
+WHERE p.good IS NULL;
