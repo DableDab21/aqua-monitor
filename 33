@@ -1,0 +1,4 @@
+SELECT AVG(p.unit_price) AS cost
+FROM Payments p
+	JOIN Goods g ON p.good = g.good_id
+WHERE g.good_name IN ('red caviar', 'black caviar');
