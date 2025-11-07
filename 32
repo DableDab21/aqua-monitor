@@ -1,0 +1,2 @@
+SELECT FLOOR(AVG(TIMESTAMPDIFF(YEAR, birthday, CURDATE()))) AS age
+FROM FamilyMembers;
