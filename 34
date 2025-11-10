@@ -1,0 +1,5 @@
+SELECT COUNT(DISTINCT sic.class) AS count
+FROM Student_in_class sic
+	JOIN Class c ON sic.class = c.id
+WHERE c.name LIKE '10%';
+-- ищем все классы, начинающиеся с "10"
