@@ -1,0 +1,4 @@
+SELECT *
+FROM Student
+WHERE address LIKE 'ul. Pushkina%';
+-- Учитываем возможные вариации адреса
