@@ -1,0 +1,5 @@
+SELECT COUNT(*) AS count
+FROM Schedule sch
+	JOIN Teacher t ON sch.teacher = t.id
+WHERE t.last_name = 'Krauze'
+	AND sch.date = '2019-08-30';
