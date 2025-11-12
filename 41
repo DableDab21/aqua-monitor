@@ -1,0 +1,6 @@
+SELECT tp.start_pair
+FROM Schedule sch
+	JOIN Timepair tp ON sch.number_pair = tp.id
+WHERE sch.number_pair = 4
+	AND sch.date = '2019-09-02';
+-- Пример даты
