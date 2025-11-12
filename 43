@@ -1,0 +1,6 @@
+SELECT t.last_name
+FROM Teacher t
+	JOIN Schedule sch ON t.id = sch.teacher
+	JOIN Subject s ON sch.subject = s.id
+WHERE s.name = 'Physical Culture'
+ORDER BY t.last_name;
