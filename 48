@@ -1,0 +1,6 @@
+SELECT c.name,
+	COUNT(sic.student) AS count
+FROM Class c
+	JOIN Student_in_class sic ON c.id = sic.class
+GROUP BY c.name
+ORDER BY count DESC;
